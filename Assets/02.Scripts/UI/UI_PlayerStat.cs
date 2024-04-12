@@ -28,9 +28,9 @@ public class UI_PlayerStat : MonoBehaviour
         }
 
         Staminabar_Image.fillAmount = Player.Stat.Stamina / Player.Stat.MaxStamina;
-        PlayerDamaged_Image.alpha = 1/ (Player.Stat.Health / Player.Stat.MaxHealth);
+        PlayerDamaged_Image.alpha = 1 - (Player.Stat.Health / Player.Stat.MaxHealth);
 
-        Debug.Log(Player.Stat.Stamina / Player.Stat.MaxStamina);
+        //Debug.Log(Player.Stat.Stamina / Player.Stat.MaxStamina);
     }
 }
 

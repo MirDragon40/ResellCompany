@@ -21,6 +21,7 @@ public class PlayerMoveAbility : PlayerAbility
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
 
+        _animator.SetBool("Crouched", false);
     }
 
     public void Update()
@@ -45,7 +46,7 @@ public class PlayerMoveAbility : PlayerAbility
 
         // 스테미나 구현
         float moveSpeed = _owner.Stat.MoveSpeed;
-        if (Input.GetKey(KeyCode.LeftShift) && _owner.Stat.Stamina > 0)
+        if (Input.GetKey(KeyCode.LeftShift) && _owner.Stat.Stamina > 0 && !_animator.GetBool("Crouched"))
         {
             moveSpeed = _owner.Stat.RunSpeed;
             _animator.SetFloat("Move", 1);
@@ -70,6 +71,28 @@ public class PlayerMoveAbility : PlayerAbility
         {
             _yVelocity = _owner.Stat.JumpPower;
             _owner.Stat.Stamina -= _owner.Stat.JumpConsumeStamina;
+        }
+
+        // 앉기 적용
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !_animator.GetBool("Crouched"))
+        {
+            _animator.SetBool("Crouched", true);
+            _animator.SetTrigger("StandingToCrouched");
+            
+
+
+        }
+        else if(Input.GetKeyDown(KeyCode.LeftControl) && _animator.GetBool("Crouched"))
+        {
+            _animator.SetBool("Crouched", false);
+            _animator.SetTrigger("CrouchedToStanding");
+
+
+        }
+
+        if (_animator.GetBool("Crouched"))
+        {
+
         }
     }
 
