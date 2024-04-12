@@ -857,7 +857,7 @@ public class PGBlockGridLevel : MonoBehaviour
                 if (Player != null && playerIn == false)
                 {
                     float playerY = Player.GetComponent<Renderer>().bounds.size.y;
-                    Vector3 playerPos = new Vector3(playerStartPointHold.x, playerY, playerStartPointHold.z);
+                    Vector3 playerPos = new Vector3(playerStartPointHold.x, 2, playerStartPointHold.z);
 
                     GameObject playerAdd = Instantiate(Player, playerPos, transform.rotation);
 
