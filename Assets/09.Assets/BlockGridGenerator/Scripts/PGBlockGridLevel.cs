@@ -266,6 +266,7 @@ public class PGBlockGridLevel : MonoBehaviour
             StartCoroutine(LevelBuilder());
         }
 
+        StartBullding();
     }
 
     //Function called when Add Block is clicked in Editor Mode.
