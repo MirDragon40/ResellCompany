@@ -5,7 +5,7 @@ using TMPro;
 
 public class TypingDisplay : MonoBehaviour
 {
-    public TextMeshProUGUI typingText; // TextMeshPro UI 컴포넌트를 참조합니다.
+    public Text typingText; // TextMeshPro UI 컴포넌트를 참조합니다.
     public bool canType; // 타이핑 가능 여부를 결정하는 bool 변수입니다.
     private string currentText = ""; // 현재 입력된 텍스트를 저장합니다.
     private bool isCursorVisible; // 커서의 가시성을 결정하는 bool 변수입니다.
