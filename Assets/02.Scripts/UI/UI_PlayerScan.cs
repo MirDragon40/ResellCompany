@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI_PlayerScan : MonoBehaviour
 {
     public Image UI_playerScan;
+    public GameObject UI_ScanImage;
 
     private bool _isScanning;
 
@@ -13,6 +14,7 @@ public class UI_PlayerScan : MonoBehaviour
     {
         _isScanning = false;
         UI_playerScan.enabled = false;
+        UI_ScanImage.SetActive(false);
     }
 
     private void Update()
@@ -25,6 +27,7 @@ public class UI_PlayerScan : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && !_isScanning)
         {
             UI_playerScan.enabled = true;
+            UI_ScanImage.SetActive(true);
             StartCoroutine(Scan_Coroutine(5f, 2f));
         }
     }
@@ -35,6 +38,7 @@ public class UI_PlayerScan : MonoBehaviour
 
         yield return new WaitForSeconds(ScanTime);
         UI_playerScan.enabled = false;
+        UI_ScanImage.SetActive(false);
 
         yield return new WaitForSeconds(ScanCoolTime);
         _isScanning = false;
