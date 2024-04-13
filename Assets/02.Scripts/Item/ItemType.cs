@@ -7,4 +7,5 @@ public enum ItemType
     JewelItem,
     Flashlight,
 
+    Count
 }
