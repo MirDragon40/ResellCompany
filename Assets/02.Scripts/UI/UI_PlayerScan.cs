@@ -5,16 +5,26 @@ using UnityEngine.UI;
 
 public class UI_PlayerScan : MonoBehaviour
 {
-    public Image UI_playerScan;
-    public GameObject UI_ScanImage;
+    public static UI_PlayerScan Instance { get; private set; }
 
-    private bool _isScanning;
+    public Image UI_playerScan;
+
+
+
+    //[HideInInspector]
+    public bool _isScanning;
+    public bool _isScanCoolTime;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
         _isScanning = false;
+        _isScanCoolTime = false;
         UI_playerScan.enabled = false;
-        UI_ScanImage.SetActive(false);
     }
 
     private void Update()
@@ -24,10 +34,9 @@ public class UI_PlayerScan : MonoBehaviour
 
     private void ShowScan()
     {
-        if (Input.GetMouseButtonDown(1) && !_isScanning)
+        if (Input.GetMouseButtonDown(1) && !_isScanning && !_isScanCoolTime)
         {
             UI_playerScan.enabled = true;
-            UI_ScanImage.SetActive(true);
             StartCoroutine(Scan_Coroutine(5f, 2f));
         }
     }
@@ -35,12 +44,14 @@ public class UI_PlayerScan : MonoBehaviour
     private IEnumerator Scan_Coroutine(float ScanTime, float ScanCoolTime)
     {
         _isScanning = true;
+        _isScanCoolTime = true;
 
         yield return new WaitForSeconds(ScanTime);
         UI_playerScan.enabled = false;
-        UI_ScanImage.SetActive(false);
+        _isScanning = false;
+        
 
         yield return new WaitForSeconds(ScanCoolTime);
-        _isScanning = false;
+        _isScanCoolTime = false;
     }
 }
