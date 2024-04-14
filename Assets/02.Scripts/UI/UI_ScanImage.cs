@@ -12,15 +12,23 @@ public class UI_ScanImage : MonoBehaviour
     public TextMeshProUGUI ItemName_text;
     public TextMeshProUGUI ItemValue_text;
 
+    private ItemObject itemObject;
+    
+
     private void Start()
     {
         scanImage.gameObject.SetActive(false);
+        itemObject = GetComponentInParent<ItemObject>();
 
+        ItemName_text.text = $"{itemObject.itemName}";
+        ItemValue_text.text = $"가치:${itemObject.itemValue}";
     }
 
     private void Update()
     {
         OnUI_ScanImage();
+
+
     }
 
     public void OnUI_ScanImage()

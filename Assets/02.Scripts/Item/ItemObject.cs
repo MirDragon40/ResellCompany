@@ -20,12 +20,17 @@ public class ItemObject : MonoBehaviour
     public Transform PlayerHand;
     private const float LERP_DURATION = 0.3f;
 
-    public int itemPrice;
+    public int itemValue;
+    public string itemName;
 
     private void Awake()
     {
-        itemPrice = Random.Range(50, 101);
-        Debug.Log(itemPrice);
+        if (ItemType == ItemType.JewelItem)
+        {
+            itemValue = Random.Range(50, 101);
+            itemName = "보석";
+        }
+
     }
 
     private void Update()
@@ -55,6 +60,7 @@ public class ItemObject : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
+                _itemState = ItemState.Held;
                 _progress += Time.deltaTime / LERP_DURATION;
                 transform.position = Vector3.Lerp(transform.position, PlayerHand.position, _progress);
 
