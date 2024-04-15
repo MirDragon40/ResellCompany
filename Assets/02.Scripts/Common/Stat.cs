@@ -26,6 +26,10 @@ public class Stat
     public float RotationSpeed = 200;
 
 
+    public float AttackCoolTime = 1f;
+    public float AttackConsumeStamina = 20f;
+    public int Damage;
+
 
     public void Init()
     {

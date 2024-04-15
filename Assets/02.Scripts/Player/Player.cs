@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour, IDamaged
 {
     public Stat Stat;
+    
 
     private void Awake()
     {
@@ -13,7 +14,19 @@ public class Player : MonoBehaviour, IDamaged
 
     public void Damaged(int damage)
     {
-
+        Stat.Health -= damage;
+        if(Stat.Health <= 0)
+        {
+            Death();
+        }
     }
+
+    private void Death()
+    {
+        GetComponent<Animator>().SetTrigger("Death");
+        GetComponent<PlayerAttackAblilty>().InactiveCollider();
+    }
+
+
 
 }

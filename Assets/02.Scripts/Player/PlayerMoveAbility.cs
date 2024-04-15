@@ -73,7 +73,7 @@ public class PlayerMoveAbility : PlayerAbility
             _owner.Stat.Stamina -= _owner.Stat.JumpConsumeStamina;
         }
 
-        // 앉기 적용
+        /* 앉기 적용
         if (Input.GetKeyDown(KeyCode.LeftControl) && !_animator.GetBool("Crouched"))
         {
             _animator.SetBool("Crouched", true);
@@ -94,6 +94,8 @@ public class PlayerMoveAbility : PlayerAbility
         {
 
         }
+
+        */
     }
 
 }
