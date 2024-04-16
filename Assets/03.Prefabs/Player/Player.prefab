@@ -692,7 +692,7 @@ Transform:
   m_GameObject: {fileID: 3736121447710289658}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.13, z: 0.281}
+  m_LocalPosition: {x: 0, y: 1.356, z: 0.339}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -824,6 +824,37 @@ Transform:
   m_Children:
   - {fileID: 2428439976888557578}
   m_Father: {fileID: 5746900014271955051}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4585917223529079677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4279656428521706314}
+  m_Layer: 0
+  m_Name: PlayerCameraRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4279656428521706314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4585917223529079677}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.003520899, y: 0.48320502, z: -0.0083375545}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5813293882731255215}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4675170460012474516
 GameObject:
@@ -1242,6 +1273,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4279656428521706314}
   - {fileID: 3477213273372737655}
   - {fileID: 5107071067785677937}
   - {fileID: 4027115896105085203}
@@ -1259,7 +1291,7 @@ Animator:
   m_GameObject: {fileID: 6367393950241880770}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: fdcc2ea0b4a59d44ebb86899c1f72c78, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4e6ac06c1f368644a96389630002033e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 58ac71b0a72810549bfa47e5027478da, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1292,7 +1324,7 @@ CharacterController:
   m_Height: 2.14
   m_Radius: 0.41
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
@@ -1362,6 +1394,9 @@ MonoBehaviour:
     RunRecoveryStamina: 10
     JumpConsumeStamina: 15
     RotationSpeed: 200
+    AttackCoolTime: 1
+    AttackConsumeStamina: 20
+    Damage: 0
 --- !u!114 &391630159314698661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1386,6 +1421,9 @@ MonoBehaviour:
     RunRecoveryStamina: 10
     JumpConsumeStamina: 10
     RotationSpeed: 200
+    AttackCoolTime: 1
+    AttackConsumeStamina: 20
+    Damage: 0
 --- !u!114 &6043059896796519429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1410,6 +1448,9 @@ MonoBehaviour:
     RunRecoveryStamina: 10
     JumpConsumeStamina: 10
     RotationSpeed: 200
+    AttackCoolTime: 1
+    AttackConsumeStamina: 20
+    Damage: 0
 --- !u!1 &6484599346511264517
 GameObject:
   m_ObjectHideFlags: 0

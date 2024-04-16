@@ -6,7 +6,7 @@ public enum ItemType
 {
     JewelItem,
     Flashlight,
-    Shovel,
+    Axe,
 
     Count
 }
