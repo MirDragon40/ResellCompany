@@ -50,6 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scanImage: {fileID: 137306336222457144}
+  ItemName_text: {fileID: 4374017029334973842}
+  ItemValue_text: {fileID: 3782559596516576054}
 --- !u!1 &1776541879921606503
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +328,7 @@ GameObject:
   - component: {fileID: 6857412926896402962}
   - component: {fileID: 6998735009704360658}
   - component: {fileID: 4594451362265510010}
+  - component: {fileID: 7359370615762073830}
   m_Layer: 0
   m_Name: JewelItem
   m_TagString: Untagged
@@ -421,6 +424,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.33288, y: 0.37048188, z: 0.2882826}
   m_Center: {x: 0, y: 0.18524094, z: 0}
+--- !u!114 &7359370615762073830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7597781244807212411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebb5910e197c9346a3cb024c2c7b227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 0
+  PlayerHand: {fileID: 0}
+  itemValue: 0
+  itemName: 
+  Interaction_UI: {fileID: 0}
+  Interaction_Text: {fileID: 0}
 --- !u!1 &8057629831058508235
 GameObject:
   m_ObjectHideFlags: 0

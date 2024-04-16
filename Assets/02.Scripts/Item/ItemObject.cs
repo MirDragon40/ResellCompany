@@ -26,7 +26,8 @@ public class ItemObject : MonoBehaviour
     public int itemValue;
     public string itemName;
 
-    public TextMeshProUGUI ItemInteraction_Text;
+    public GameObject Interaction_UI;
+    public TextMeshProUGUI Interaction_Text;
 
 
 
@@ -43,7 +44,7 @@ public class ItemObject : MonoBehaviour
 
     private void Start()
     {
-        ItemInteraction_Text.enabled = false;
+        Interaction_UI.SetActive(false);
     }
 
     private void Update()
@@ -70,13 +71,13 @@ public class ItemObject : MonoBehaviour
             // 플레이어와 닿으면 트리거 상태를 true로 설정
             
             _isTriggered = true;
-            ItemInteraction_Text.enabled = true;
-            ItemInteraction_Text.text = "아이템 줍기 : [E]";
+            Interaction_UI.SetActive(true);
+            Interaction_Text.text = "아이템 줍기 : [E]";
 
 
-            if (Input.GetKeyDown(KeyCode.E) && ItemInteraction_Text.enabled)
+            if (Input.GetKeyDown(KeyCode.E) && _isTriggered)
             {
-                ItemInteraction_Text.enabled = false;
+                Interaction_UI.SetActive(false);
             }
 
 

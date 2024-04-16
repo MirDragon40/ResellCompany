@@ -37,7 +37,7 @@ public class SpiderMove : MonoBehaviour, IDamaged
     private float _attackTimer = 0f;
 
     // AI
-    private Player _target;
+    private Transform _target;
     public float FindDistance = 10f;
     public float AttackDistance = 7f;
     public float MoveDistance = 40f;
@@ -62,7 +62,7 @@ public class SpiderMove : MonoBehaviour, IDamaged
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
-        _target = GetComponent<Player>();
+        _target = GameObject.FindGameObjectWithTag("Player").transform;
 
 
     }
@@ -185,6 +185,10 @@ public class SpiderMove : MonoBehaviour, IDamaged
         {
             MoveToRandomPosition();
         }
+        if(_target == null)
+        {
+            Debug.Log(1);
+        }
         // 플레이어가 감지 범위 내에 있으면 상태를 Trace로 변경하여 플레이어를 추적
         if (Vector3.Distance(_target.transform.position, transform.position) <= FindDistance)
         {
@@ -207,7 +211,6 @@ public class SpiderMove : MonoBehaviour, IDamaged
         dir.Normalize();
 
         _navMeshAgent.stoppingDistance = TOLERANCE;
-
         _navMeshAgent.destination = StartPosition;
 
         if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= TOLERANCE)
@@ -215,12 +218,10 @@ public class SpiderMove : MonoBehaviour, IDamaged
             PlayAnimation("Idle");
             _currentState = SpiderState.Idle;
         }
-
     }
 
     private void Attack()
     {
-
         float distanceToTarget = Vector3.Distance(_target.transform.position, transform.position);
         _attackTimer += Time.deltaTime;
 
