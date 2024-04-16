@@ -43,7 +43,7 @@ public class ItemObject : MonoBehaviour
 
     private void Start()
     {
-        
+        ItemInteraction_Text.enabled = false;
     }
 
     private void Update()
@@ -69,11 +69,14 @@ public class ItemObject : MonoBehaviour
         {
             // 플레이어와 닿으면 트리거 상태를 true로 설정
             
-            _isTriggered = true; 
+            _isTriggered = true;
+            ItemInteraction_Text.enabled = true;
+            ItemInteraction_Text.text = "아이템 줍기 : [E]";
 
-            if (Input.GetKeyDown(KeyCode.E))
+
+            if (Input.GetKeyDown(KeyCode.E) && ItemInteraction_Text.enabled)
             {
-              
+                ItemInteraction_Text.enabled = false;
             }
 
 
