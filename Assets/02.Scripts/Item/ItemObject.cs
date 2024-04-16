@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemObject : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class ItemObject : MonoBehaviour
         Held,
         Stored
     }
+
 
     public ItemType ItemType;
     private ItemState _itemState = ItemState.Idle;
@@ -23,6 +26,10 @@ public class ItemObject : MonoBehaviour
     public int itemValue;
     public string itemName;
 
+    public TextMeshProUGUI ItemInteraction_Text;
+
+
+
     private void Awake()
     {
         if (ItemType == ItemType.JewelItem)
@@ -30,7 +37,13 @@ public class ItemObject : MonoBehaviour
             itemValue = Random.Range(50, 101);
             itemName = "보석";
         }
+        
 
+    }
+
+    private void Start()
+    {
+        
     }
 
     private void Update()
@@ -50,20 +63,17 @@ public class ItemObject : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider col)
     {
-        if (other.CompareTag("Player"))
+        if (col.CompareTag("Player"))
         {
             // 플레이어와 닿으면 트리거 상태를 true로 설정
-
+            
             _isTriggered = true; 
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                _itemState = ItemState.Held;
-                _progress += Time.deltaTime / LERP_DURATION;
-                transform.position = Vector3.Lerp(transform.position, PlayerHand.position, _progress);
-
+              
             }
 
 

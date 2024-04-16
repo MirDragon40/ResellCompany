@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5016661357189203260}
   - component: {fileID: -6384327855934592721}
-  - component: {fileID: 7877883685781450233}
   - component: {fileID: 4856122268649991908}
   - component: {fileID: 6536343892314418854}
   - component: {fileID: 3712486946603444}
@@ -67,40 +66,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7877883685781450233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67124008806631512}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5efbf445b3690ed49bf6184f047f6894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyCanvas: {fileID: 8102091177645333783}
-  HealthSliderUI: {fileID: 1550524174778892148}
-  CharacterDetectCollider: {fileID: 7633758777027982221}
-  Stat:
-    Health: 100
-    MaxHealth: 100
-    Stamina: 0
-    MaxStamina: 0
-    MoveSpeed: 6
-    RunSpeed: 10
-    JumpPower: 7
-    RunConsumeStamina: 10
-    RunRecoveryStamina: 10
-    JumpConsumeStamina: 20
-    RotationSpeed: 200
-    AttackCoolTime: 1
-    AttackConsumeStamina: 20
-    Damage: 20
-  TraceDetectRange: 8
-  IdleMaxTime: 10
-  PatrolDestination: {fileID: 0}
-  AttackDistance: 3
 --- !u!143 &4856122268649991908
 CharacterController:
   m_ObjectHideFlags: 0
