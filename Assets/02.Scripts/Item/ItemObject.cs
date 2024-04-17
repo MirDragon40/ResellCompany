@@ -35,10 +35,21 @@ public class ItemObject : MonoBehaviour
     {
         if (ItemType == ItemType.JewelItem)
         {
-            itemValue = Random.Range(50, 101);
+            itemValue = Random.Range(50, 85);
             itemName = "보석";
         }
-        
+        if(ItemType == ItemType.SilverCoin)
+        {
+            itemValue = Random.Range(20, 70);
+            itemName = "은화";
+        }
+        if(ItemType == ItemType.GoldCoin)
+        {
+            itemValue = Random.Range(60, 120);
+            itemName = "금화";
+
+        }
+
 
     }
 
@@ -74,15 +85,19 @@ public class ItemObject : MonoBehaviour
             Interaction_UI.SetActive(true);
             Interaction_Text.text = "아이템 줍기 : [E]";
 
+            col.GetComponent<PlayerItemGetAbility>().SetItemObject(this);
         }
     }
+
     private void OnTriggerStay(Collider col)
     {
         if (col.CompareTag("Player"))
         {
             if (Input.GetKeyDown(KeyCode.E) && _isTriggered)
             {
+               // ItemManager.Instance.AddItem(ItemType);
                 Interaction_UI.SetActive(false);
+                Destroy(this.gameObject);
             }
         }
     }
@@ -93,6 +108,9 @@ public class ItemObject : MonoBehaviour
         {
             _isTriggered = false;
             Interaction_UI.SetActive(false);
+
+            col.GetComponent<PlayerItemGetAbility>().RemoveItemObject();
+
         }
     }
 

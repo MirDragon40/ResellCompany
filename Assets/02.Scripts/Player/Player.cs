@@ -22,7 +22,7 @@ public class Player : MonoBehaviour, IDamaged
     public void Damaged(int damage)
     {
         Stat.Health -= damage;
-        if(Stat.Health <= 0)
+        if (Stat.Health <= 0 && Stat.Health > -5)
         {
             Death();
         }

@@ -8,6 +8,8 @@ public enum ItemType
     Flashlight,
     Axe,
     None,
+    SilverCoin,
+    GoldCoin,
 
     Count
 }
