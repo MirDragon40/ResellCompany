@@ -74,13 +74,25 @@ public class ItemObject : MonoBehaviour
             Interaction_UI.SetActive(true);
             Interaction_Text.text = "아이템 줍기 : [E]";
 
-
+        }
+    }
+    private void OnTriggerStay(Collider col)
+    {
+        if (col.CompareTag("Player"))
+        {
             if (Input.GetKeyDown(KeyCode.E) && _isTriggered)
             {
                 Interaction_UI.SetActive(false);
             }
+        }
+    }
 
-
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            _isTriggered = false;
+            Interaction_UI.SetActive(false);
         }
     }
 

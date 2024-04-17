@@ -61,7 +61,7 @@ public class SpiderMove : MonoBehaviour, IDamaged
     public void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         _target = GameObject.FindGameObjectWithTag("Player").transform;
 
 
@@ -188,12 +188,12 @@ public class SpiderMove : MonoBehaviour, IDamaged
         // 플레이어가 감지 범위 내에 있으면 상태를 Trace로 변경하여 플레이어를 추적
         if (Vector3.Distance(_target.transform.position, transform.position) <= FindDistance)
         {
-            
+
             PlayAnimation("Run");
             _currentState = SpiderState.Trace;
         }
 
-        // 추가: Patrol 상태에서 일정 시간 대기 후 Comeback으로 전환
+        // 추가: Patrol 상태에서 일정 시간 대기 후 return으로 전환
         if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= TOLERANCE)
         {
             StartCoroutine(WaitAndReturn_Coroutine());
@@ -266,10 +266,11 @@ public class SpiderMove : MonoBehaviour, IDamaged
         }
     }
 
-   public void Damaged(int damage)
+    public void Damaged(int damage)
     {
         Stat.Health -= damage;
-        if(Stat.Health <= 0)
+
+        if (Stat.Health <= 0)
         {
             _currentState = SpiderState.Death;
             Death();
@@ -286,6 +287,7 @@ public class SpiderMove : MonoBehaviour, IDamaged
     public void Death()
     {
         PlayAnimation("Death");
+
         if(_dieCoroutine == null)
         {
             _dieCoroutine = StartCoroutine(Death_Coroutine());

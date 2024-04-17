@@ -9,7 +9,7 @@ public class UI_InventorySlot : MonoBehaviour
     // 슬롯에 아이템을 설정하는 메서드
     public void SetItem(ItemObject item)
     {
-        // 우선 모든 자식 이미지를 비활성화합니다.
+        // 우선 모든 자식 이미지를 비활성화
         foreach (var image in itemImages)
         {
             image.SetActive(false);

@@ -8,7 +8,7 @@ public class SpiderAttack : MonoBehaviour
 
     private void Start()
     {
-        _owner = GetComponent<SpiderMove>();
+        _owner = GetComponentInParent<SpiderMove>();
 
     }
 
