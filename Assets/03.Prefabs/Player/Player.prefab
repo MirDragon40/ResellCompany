@@ -1511,6 +1511,7 @@ MonoBehaviour:
     AttackCoolTime: 1
     AttackConsumeStamina: 20
     Damage: 20
+    MoneyCount: 0
   UI_AlmostDying: {fileID: 0}
 --- !u!114 &391630159314698661
 MonoBehaviour:
@@ -1539,6 +1540,7 @@ MonoBehaviour:
     AttackCoolTime: 1
     AttackConsumeStamina: 20
     Damage: 20
+    MoneyCount: 0
   UI_AlmostDying: {fileID: 0}
 --- !u!114 &6043059896796519429
 MonoBehaviour:
@@ -1567,6 +1569,7 @@ MonoBehaviour:
     AttackCoolTime: 1
     AttackConsumeStamina: 20
     Damage: 20
+    MoneyCount: 0
   UI_AlmostDying: {fileID: 0}
 --- !u!114 &4364499288102383099
 MonoBehaviour:
@@ -1595,6 +1598,7 @@ MonoBehaviour:
     AttackCoolTime: 1
     AttackConsumeStamina: 20
     Damage: 20
+    MoneyCount: 60
   UI_AlmostDying: {fileID: 0}
   WeaponCollider: {fileID: 911478493081381566}
   WeaponObject: {fileID: 8073279033722968553}
@@ -1625,6 +1629,7 @@ MonoBehaviour:
     AttackCoolTime: 1
     AttackConsumeStamina: 20
     Damage: 0
+    MoneyCount: 0
   UI_AlmostDying: {fileID: 0}
 --- !u!114 &744997269742186172
 MonoBehaviour:
@@ -1653,6 +1658,7 @@ MonoBehaviour:
     AttackCoolTime: 1
     AttackConsumeStamina: 20
     Damage: 0
+    MoneyCount: 0
   UI_AlmostDying: {fileID: 0}
   currentInventory: 0
 --- !u!1 &6484599346511264517

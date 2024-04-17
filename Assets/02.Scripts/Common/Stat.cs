@@ -30,6 +30,8 @@ public class Stat
     public float AttackConsumeStamina = 20f;
     public int Damage;
 
+    public int MoneyCount;
+
 
     public void Init()
     {

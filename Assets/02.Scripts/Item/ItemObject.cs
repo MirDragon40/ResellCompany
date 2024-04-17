@@ -83,7 +83,7 @@ public class ItemObject : MonoBehaviour
             
             _isTriggered = true;
             Interaction_UI.SetActive(true);
-            Interaction_Text.text = "아이템 줍기 : [E]";
+            Interaction_Text.text = "아이템 줍기: [E]";
 
             col.GetComponent<PlayerItemGetAbility>().SetItemObject(this);
         }

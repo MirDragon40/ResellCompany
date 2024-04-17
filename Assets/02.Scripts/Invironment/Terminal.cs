@@ -1,18 +1,137 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Terminal : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static Terminal Instance { get; private set; }
+
+    private TypingDisplay typingDisplay;
+
+    public GameObject Interaction_UI;
+    public TextMeshProUGUI Interaction_Text;
+
+    private bool _isUsingTerminal = false;
+
+    public Text Terminal_text1;
+    public Text Terminal_text2;
+    public Text Money_text;
+    public Text Notify_text;
+
+    public Player Player;
+
+    private void Awake()
     {
-        
+        Instance = this;
+
+        typingDisplay = GetComponentInChildren<TypingDisplay>();
+
+
+    }
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        Money_text.text = $"소지금:${Player.Stat.MoneyCount}";
+        Terminal_text1.enabled = false;
+        Terminal_text2.enabled = false;
+
+        typingDisplay._canType = false;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        UseKeyboard();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Interaction_UI.SetActive(true);
+            Interaction_Text.text = "터미널사용: [E]";
+
+
+        }
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Interaction_UI.SetActive(false);
+
+                Terminal_text1.enabled = true;
+                _isUsingTerminal = true;
+                typingDisplay._canType = true;
+
+                if (Input.GetKeyDown(KeyCode.KeypadEnter) && typingDisplay.currentText == "Store" )
+                {
+                    Terminal_text1.enabled = false;
+                    Terminal_text2.enabled= true;
+
+                }
+                
+            }
+
+        }
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Interaction_UI.SetActive(false);
+
+        }
+
+
+    }
+
+    private void UseKeyboard()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && !_isUsingTerminal)
+        {
+            //Interaction_UI.SetActive(false);
+
+            Terminal_text1.enabled = true;
+            _isUsingTerminal = true;
+            typingDisplay._canType = true;
+
+        }
+        if (_isUsingTerminal)
+        {
+            if (Input.GetKeyDown(KeyCode.KeypadEnter) && typingDisplay.currentText == "Store")
+            {
+                Terminal_text1.enabled = false;
+                Terminal_text2.enabled = true;
+
+            }
+
+            if (Terminal_text2.enabled)
+            {
+                if (Input.GetKeyDown(KeyCode.KeypadEnter) && typingDisplay.currentText == "Axe")
+                {
+                    
+                }
+                else if(Input.GetKeyDown(KeyCode.KeypadEnter) && typingDisplay.currentText == "Flashlight")
+                {
+
+                }
+
+            }
+            
+        }
+
+
+    }
+
 }

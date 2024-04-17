@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UI_Inventory : MonoBehaviour
 {
+    public PlayerItemHoldAbility PlayerItemHoldAbility;
+
     public List<ItemObject> itemObjects; // 아이템 리스트
     public UI_InventorySlot[] Slots; // 인벤토리 슬롯의 이미지 배열
 
@@ -13,6 +15,8 @@ public class UI_Inventory : MonoBehaviour
     {
 
         InitInventory();
+
+
     }
 
     private void InitInventory()
