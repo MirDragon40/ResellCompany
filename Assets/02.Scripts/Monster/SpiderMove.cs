@@ -185,10 +185,6 @@ public class SpiderMove : MonoBehaviour, IDamaged
         {
             MoveToRandomPosition();
         }
-        if(_target == null)
-        {
-            Debug.Log(1);
-        }
         // 플레이어가 감지 범위 내에 있으면 상태를 Trace로 변경하여 플레이어를 추적
         if (Vector3.Distance(_target.transform.position, transform.position) <= FindDistance)
         {
