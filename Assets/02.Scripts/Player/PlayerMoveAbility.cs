@@ -46,7 +46,7 @@ public class PlayerMoveAbility : PlayerAbility
 
         // 스테미나 구현
         float moveSpeed = _owner.Stat.MoveSpeed;
-        if (Input.GetKey(KeyCode.LeftShift) && _owner.Stat.Stamina > 0 && !_animator.GetBool("Crouched"))
+        if (Input.GetKey(KeyCode.LeftShift) && _owner.Stat.Stamina > 0 )
         {
             moveSpeed = _owner.Stat.RunSpeed;
             _animator.SetFloat("Move", 1);

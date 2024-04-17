@@ -7,9 +7,8 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance { get; private set; }
 
-    public List<ItemType> items = new List<ItemType>(4);
-
-    public bool _isFlashlightOn = false;
+    public List<ItemType> items;
+    private int inventoryNum = 4;
 
 
     private void Awake()
@@ -22,6 +21,8 @@ public class ItemManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        items = new List<ItemType>(inventoryNum);
     }
 
     // 아이템을 인벤토리에 추가
@@ -33,6 +34,7 @@ public class ItemManager : MonoBehaviour
         {
             items.Add(itemToAdd);
             // 아이템 추가 성공
+
         }
         
         // 인벤토리가 가득 찼을 경우

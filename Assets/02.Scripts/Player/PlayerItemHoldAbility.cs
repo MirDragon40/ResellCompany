@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerItemHoldAbility : PlayerAbility
 {
+    public int currentInventory;
 
+    public void Start()
+    {
+        
+    }
 
 }
