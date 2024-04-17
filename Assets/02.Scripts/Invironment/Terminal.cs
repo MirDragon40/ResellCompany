@@ -14,7 +14,7 @@ public class Terminal : MonoBehaviour
     public GameObject Interaction_UI;
     public TextMeshProUGUI Interaction_Text;
 
-    private bool _isUsingTerminal = false;
+    public bool IsUsingTerminal = false;
 
     public Text Terminal_text1;
     public Text Terminal_text2;
@@ -38,8 +38,9 @@ public class Terminal : MonoBehaviour
         Money_text.text = $"소지금:${Player.Stat.MoneyCount}";
         Terminal_text1.enabled = false;
         Terminal_text2.enabled = false;
+        Notify_text.enabled = false;
 
-        typingDisplay._canType = false;
+        IsUsingTerminal = false;
     }
 
     // Update is called once per frame
@@ -69,8 +70,7 @@ public class Terminal : MonoBehaviour
                 Interaction_UI.SetActive(false);
 
                 Terminal_text1.enabled = true;
-                _isUsingTerminal = true;
-                typingDisplay._canType = true;
+                IsUsingTerminal = true;
 
                 if (Input.GetKeyDown(KeyCode.KeypadEnter) && typingDisplay.currentText == "Store" )
                 {
@@ -98,23 +98,25 @@ public class Terminal : MonoBehaviour
 
     private void UseKeyboard()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !_isUsingTerminal)
+        if (Input.GetKeyDown(KeyCode.E) && !IsUsingTerminal)
         {
             //Interaction_UI.SetActive(false);
 
             Terminal_text1.enabled = true;
-            _isUsingTerminal = true;
-            typingDisplay._canType = true;
+            
+            StartCoroutine(IsUsingTerminal_Coroutine());
 
         }
-        if (_isUsingTerminal)
-        {
-            if (Input.GetKeyDown(KeyCode.KeypadEnter) && typingDisplay.currentText == "Store")
-            {
-                Terminal_text1.enabled = false;
-                Terminal_text2.enabled = true;
 
+        if (IsUsingTerminal)
+        {
+            if (Terminal_text1.enabled)
+            {
+                if (Input.GetKeyDown(KeyCode.KeypadEnter) && typingDisplay.currentText == "Store")
+                {
+                }
             }
+           
 
             if (Terminal_text2.enabled)
             {
@@ -132,6 +134,37 @@ public class Terminal : MonoBehaviour
         }
 
 
+    }
+
+    private IEnumerator IsUsingTerminal_Coroutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+        IsUsingTerminal = true;
+    }
+
+    public void HandleStoreCommand()
+    {
+        Terminal_text1.enabled = false;
+        Terminal_text2.enabled = true;
+    }
+
+    public void HandleAxeCommand()
+    {
+
+    }
+
+    public void HandleFlashlightCommand()
+    {
+
+    }
+
+    public IEnumerator Notification_Coroutine()
+    {
+        Notify_text.enabled = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        Notify_text.enabled = false;
     }
 
 }
