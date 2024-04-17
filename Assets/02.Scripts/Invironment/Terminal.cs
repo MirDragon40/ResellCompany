@@ -161,10 +161,25 @@ public class Terminal : MonoBehaviour
     public IEnumerator Notification_Coroutine()
     {
         Notify_text.enabled = true;
+        Terminal_text1.enabled = false;
+        Terminal_text2.enabled = false;
+        Notify_text.text = "※ 일치하는 명령어가 없습니다. \n명령어를 다시 입력해주세요.";
 
         yield return new WaitForSeconds(0.5f);
 
         Notify_text.enabled = false;
+        Terminal_text1.enabled = true;
+        Terminal_text2.enabled = true;
+
+    }
+
+    public IEnumerator BoughtItem_Coroutine()
+    {
+        Notify_text.enabled = true;
+        Notify_text.text = "아이템 구입 완료!";
+
+        yield return new WaitForSeconds(0.5f);
+
     }
 
 }

@@ -30,7 +30,7 @@ public class ItemManager : MonoBehaviour
     {
         
         // 인벤토리에 빈 공간이 있는지 확인
-        if (items.Count < 4 && items.Count >= 0)
+        if (items.Count < inventoryNum && items.Count >= 0)
         {
             items.Add(itemToAdd);
             // 아이템 추가 성공
