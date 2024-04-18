@@ -4,28 +4,39 @@ using UnityEngine;
 
 public class PlayerItemGetAbility : MonoBehaviour
 {
-    private ItemObject _currentItemObject = null;
+    public ItemObject CurrentItemObject = null;
 
     public void SetItemObject(ItemObject itemObject)
     {
-        _currentItemObject = itemObject;
+        CurrentItemObject = itemObject;
+
+        if(itemObject.ItemType == ItemType.Axe)
+        {
+            ItemManager.Instance.HaveAxe = true;
+        }
+        else if (itemObject.ItemType == ItemType.Flashlight)
+        {
+            ItemManager.Instance.HaveFlashlight = true;
+
+        }
+
     }
 
     public void RemoveItemObject()
     {
-        _currentItemObject = null;
+        CurrentItemObject = null;
     }
 
     private void Update()
     {
-        if (_currentItemObject == null)
+        if (CurrentItemObject == null)
         {
             return;
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            ItemManager.Instance.AddItem(_currentItemObject.ItemType, _currentItemObject.itemValue);
-            RemoveItemObject();
+            ItemManager.Instance.AddItem(CurrentItemObject);
+            //RemoveItemObject();
         }
     }
 }

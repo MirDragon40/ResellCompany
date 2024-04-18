@@ -36,7 +36,11 @@ public class TypingDisplay : MonoBehaviour
                         // Store 관련 이벤트 처리 로직
                         Terminal.Instance.HandleStoreCommand();
 
-                        
+                    }
+                    else if (currentText == "Sell" || currentText == "sell")
+                    {
+                        Debug.Log("Sell 입력 감지!");
+                        Terminal.Instance.HandleSellCommand();
                     }
                     // "Axe" 명령어 처리
                     else if (currentText == "Axe"|| currentText == "axe")

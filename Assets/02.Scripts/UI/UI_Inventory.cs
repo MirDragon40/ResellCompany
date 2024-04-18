@@ -6,25 +6,54 @@ using UnityEngine.UI;
 
 public class UI_Inventory : MonoBehaviour
 {
-    public PlayerItemHoldAbility PlayerItemHoldAbility;
+    public PlayerAttackAbility playerAttackAbility;
 
-    public List<ItemObject> itemObjects; // 아이템 리스트
+    public List<ItemObject> itemObjectsInInventoryUI; // 아이템 리스트
     public UI_InventorySlot[] Slots; // 인벤토리 슬롯의 이미지 배열
+
 
     public int selectedIndex = 0;  // 현재 선택된 슬롯의 인덱스
 
+    private int inventoryNum = 4;
 
+    private void Awake()
+    {
+        itemObjectsInInventoryUI = new List<ItemObject>(inventoryNum);
+
+    }
     private void Start()
     {
-
+        
         InitInventory();
-
+        playerAttackAbility.enabled = false;
 
     }
     private void Update()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         UpdateSelection(scroll);
+
+       
+        /*
+        for (int i = 0; i < inventoryNum; i++)
+        {
+            if (ItemManager.Instance.ItemObjects.Count > i)
+            {
+                if (ItemManager.Instance.ItemObjects[i] != null)
+                {
+                    if (i >= itemObjectsInInventoryUI.Count)
+                    {
+                        itemObjectsInInventoryUI.Add(ItemManager.Instance.ItemObjects[i]);
+                    }
+                    else
+                    {
+                        itemObjectsInInventoryUI[i] = ItemManager.Instance.ItemObjects[i];
+                    }
+                }
+            }
+        }
+        */
+
     }
 
 
@@ -34,9 +63,9 @@ public class UI_Inventory : MonoBehaviour
     {
         for (int i = 0; i < Slots.Length; i++)
         {
-            if (i < itemObjects.Count)
+            if (i < itemObjectsInInventoryUI.Count)
             {
-                Slots[i].SetItem(itemObjects[i]); // 아이템 리스트의 각 아이템을 슬롯에 설정
+                Slots[i].SetItem(itemObjectsInInventoryUI[i]); // 아이템 리스트의 각 아이템을 슬롯에 설정
             }
             else
             {
@@ -56,6 +85,7 @@ public class UI_Inventory : MonoBehaviour
             {
                 selectedIndex--;
                 if (selectedIndex < 0) selectedIndex = Slots.Length - 1;
+
             }
             else if (scroll < 0)
             {
@@ -67,9 +97,4 @@ public class UI_Inventory : MonoBehaviour
         }
     }
 
-    void UpdateSelectedItem()
-    {
-        // 여기서 현재 선택된 아이템 정보를 PlayerItemHoldAbility에 전달
-       // PlayerItemHoldAbility.SetCurrentItem(inventoryItems[selectedItemIndex]);
-    }
 }

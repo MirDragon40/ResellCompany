@@ -5,13 +5,24 @@ using static UnityEditor.Progress;
 
 public class ItemManager : MonoBehaviour
 {
+
     public static ItemManager Instance { get; private set; }
 
-    public List<ItemType> items;
+    public List<ItemObject> ItemObjects;
+
     private int inventoryNum = 4;
 
-    public List<int> itemValues;
+    public bool HaveAxe = false;
+    public bool HaveFlashlight = false;
 
+    public GameObject AxeImage;
+    public GameObject FlashlightImage;
+
+    public GameObject AxeItemObject_camera;
+    public GameObject FlashlightItemObject_camera;
+
+    public GameObject AxeItemObject_Hand;
+    public GameObject Flashlight_Hand;
 
     private void Awake()
     {
@@ -24,28 +35,28 @@ public class ItemManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        items = new List<ItemType>(inventoryNum);
-        itemValues = new List<int>(inventoryNum);
+        ItemObjects = new List<ItemObject>(inventoryNum);
+        
+    }
+
+    private void Start()
+    {
+        HaveAxe = false;
+        HaveFlashlight = false;
     }
 
     // 아이템을 인벤토리에 추가
-    public void AddItem(ItemType itemToAdd, int itemValue)
+    public void AddItem(ItemObject itemToAdd)
     {
-        // 인벤토리에 빈 공간이 있는지 확인
-        if (items.Count < inventoryNum && items.Count >= 0)
-        {
-            items.Add(itemToAdd);
-            // 아이템 가치도 함께 저장
-            itemValues.Add(itemValue);
-            // 아이템 추가 성공
-        }
+       
     }
 
 
     // 아이템을 인벤토리에서 제거
-    public void RemoveItem(ItemType itemToRemove)
+    public void RemoveItem(ItemObject itemToRemove)
     {
-        items.Remove(itemToRemove);
+        ItemObjects.Remove(itemToRemove);
+
     }
 
 

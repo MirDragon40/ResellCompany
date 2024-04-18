@@ -51,10 +51,16 @@ public class Terminal : MonoBehaviour
         IsUsingTerminal = false;
     }
 
+    private void InitMoneyCount()
+    {
+        Money_text.text = $"소지금:${Player.Stat.MoneyCount}";
+    }
     // Update is called once per frame
     private void Update()
     {
         //UseKeyboard();
+
+        InitMoneyCount();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -145,7 +151,10 @@ public class Terminal : MonoBehaviour
         Terminal_text1.enabled = false;
         Terminal_text2.enabled = true;
     }
-
+    public void HandleSellCommand()
+    {
+        StartCoroutine(SoldItems_Coroutine());
+    }
     public void HandleAxeCommand()
     {
         Player.Stat.MoneyCount -= 30;
@@ -166,7 +175,7 @@ public class Terminal : MonoBehaviour
         Terminal_text2.enabled = false;
         Notify_text.text = "※ 일치하는 명령어가 없습니다. \n명령어를 다시 입력해주세요.";
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         Notify_text.enabled = false;
         Terminal_text1.enabled = true;
@@ -184,6 +193,19 @@ public class Terminal : MonoBehaviour
 
         Notify_text.enabled = false;
         Terminal_text2.enabled = true;
+    }
+
+    public IEnumerator SoldItems_Coroutine()
+    {
+
+        Terminal_text1.enabled = false;
+        Notify_text.text = $"아이템을 팔고 \n${Player.Stat.CollectedMoneyCount}를 받았습니다.";
+        Player.Stat.MoneyCount += Player.Stat.CollectedMoneyCount;
+        Money_text.text = $"소지금:${Player.Stat.MoneyCount}";
+
+        yield return new WaitForSeconds(1f);
+
+        Notify_text.enabled = false;
     }
 
 

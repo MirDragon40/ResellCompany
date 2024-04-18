@@ -17,9 +17,8 @@ public class PlayerItemHoldAbility : PlayerAbility
     private void Update()
     {
     }
-    void SetCurrentItem(ItemType itemType, int itemValue)
+    void SetCurrentItem(ItemObject itemObject)
     {
-        CurrentItem = itemType;
-        CurrentItemValue = itemValue;
+       
     }
 }

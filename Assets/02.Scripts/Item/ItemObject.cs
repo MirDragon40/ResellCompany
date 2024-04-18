@@ -92,10 +92,15 @@ public class ItemObject : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+
             if (Input.GetKeyDown(KeyCode.E) && _isTriggered)
             {
-               // ItemManager.Instance.AddItem(ItemType);
                 Interaction_UI.SetActive(false);
+
+                Player player = GetComponent<Player>();
+                player.Stat.CollectedMoneyCount += itemValue; 
+                
+
                 Destroy(this.gameObject);
             }
         }

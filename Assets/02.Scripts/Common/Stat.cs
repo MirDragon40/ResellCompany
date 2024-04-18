@@ -31,7 +31,7 @@ public class Stat
     public int Damage;
 
     public int MoneyCount;
-
+    public int CollectedMoneyCount;
 
     public void Init()
     {
