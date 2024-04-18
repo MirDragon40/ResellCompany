@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IDamaged
     public Stat Stat;
 
     public GameObject UI_AlmostDying;
+    public GameObject UI_Damaged;
 
 
 
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour, IDamaged
     public void Damaged(int damage)
     {
         Stat.Health -= damage;
+        StartCoroutine(Damaged_Coroutine());
         if (Stat.Health <= 0 && Stat.Health > -5)
         {
             Death();
@@ -72,5 +74,11 @@ public class Player : MonoBehaviour, IDamaged
         UI_AlmostDying.SetActive(false);
     }
 
+    private IEnumerator Damaged_Coroutine()
+    {
+        UI_Damaged.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        UI_Damaged.SetActive(false);
+    }
 
 }
