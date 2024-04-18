@@ -18,7 +18,6 @@ public class ItemObject : MonoBehaviour
     private ItemState _itemState = ItemState.Idle;
 
     private bool _isTriggered = false;
-    private float _progress = 0;
 
     public Transform PlayerHand;
     private const float LERP_DURATION = 0.3f;

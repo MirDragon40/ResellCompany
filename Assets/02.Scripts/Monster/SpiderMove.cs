@@ -54,7 +54,7 @@ public class SpiderMove : MonoBehaviour, IDamaged
     private Vector3 _knockbackEndPosition;
     private const float KNOCKBACK_DURATION = 0.1f;
     private float _knockbackProgress = 0f;
-    public float KnockbackPower = 1.2f;
+    public float KnockbackPower = 2f;
 
 
 
@@ -279,6 +279,7 @@ public class SpiderMove : MonoBehaviour, IDamaged
         {
             PlayAnimation("Hit");
             _currentState = SpiderState.Hit;
+            Debug.Log("거미가 플레이어한테 맞았다");
         }
     }
 

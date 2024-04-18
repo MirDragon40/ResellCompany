@@ -21,7 +21,7 @@ public class NavMeshSurfaceBaker : MonoBehaviour
     private IEnumerator BakeNavMesh_Coroutine()
     {
 
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.03f);
         if (surface != null)
         {
             // NavMeshSurface 컴포넌트의 BuildNavMesh 메소드를 호출하여 NavMesh를 굽는다.

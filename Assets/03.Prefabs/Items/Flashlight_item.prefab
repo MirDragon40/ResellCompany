@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebb5910e197c9346a3cb024c2c7b227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemType: 1
+  ItemType: 0
   PlayerHand: {fileID: 0}
   itemValue: 0
   itemName: 

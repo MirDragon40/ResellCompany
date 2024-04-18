@@ -13,6 +13,12 @@ public class UI_InventorySlot : MonoBehaviour
     {
         inventory = GetComponentInParent<UI_Inventory>();
     }
+
+    public void SetScale(float scale)
+    {
+        transform.localScale = new Vector3(scale, scale, scale);
+    }
+
     // 슬롯에 아이템을 설정하는 메서드
     public void SetItem(ItemObject item)
     {
@@ -21,14 +27,26 @@ public class UI_InventorySlot : MonoBehaviour
         {
             image.SetActive(false);
         }
-        
+
         if ((int)item.ItemType == (int)ItemType.None)
         {
             // 아이템 타입이 None이면, 어떤 이미지도 표시하지 않는다.
             return;
         }
-
-        // 아이템 타입에 맞는 이미지를 활성화
-        itemImages[(int)item.ItemType - 1].SetActive(true);
+        else if ((int)item.ItemType == (int)ItemType.Axe)
+        {
+            itemImages[2].SetActive(true);
+        }
+        else if((int)item.ItemType == (int)ItemType.Flashlight)
+        {
+            itemImages[1].SetActive(true);
+        }
+        else
+        {
+            itemImages[0].SetActive(true);
+        }
+        
     }
+
+
 }

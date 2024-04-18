@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(PlayerMoveAbility))]
+[RequireComponent(typeof(PlayerRotateAbility))]
+[RequireComponent(typeof(PlayerAttackAbility))]
 public class Player : MonoBehaviour, IDamaged
 {
     public Stat Stat;

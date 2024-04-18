@@ -8,6 +8,7 @@ public class Axe : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        Debug.Log("트리거 발생");
         MyPlayerAttackAbility.OnTriggerEnter(other);
     }
 }

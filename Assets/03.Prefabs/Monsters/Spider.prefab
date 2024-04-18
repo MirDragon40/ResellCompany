@@ -134,6 +134,7 @@ MonoBehaviour:
     AttackCoolTime: 2
     AttackConsumeStamina: 20
     Damage: 20
+    MoneyCount: 0
   HealthSliderUI: {fileID: 1550524174778892148}
   StartPosition: {x: 0, y: 0, z: 0}
   FindDistance: 10
@@ -1336,7 +1337,7 @@ Transform:
   m_GameObject: {fileID: 2831450685070693129}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3120198, y: -0.8387909, z: 18.18932}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -5,12 +5,21 @@ using UnityEngine;
 
 public class PlayerItemHoldAbility : PlayerAbility
 {
-    public int currentInventory;
+    public UI_Inventory Inventory;
+    public ItemType CurrentItem;
+    public int CurrentItemValue;
 
     private void Start()
     {
-        currentInventory = 0;
+        CurrentItem = 0;
     }
 
-    
+    private void Update()
+    {
+    }
+    void SetCurrentItem(ItemType itemType, int itemValue)
+    {
+        CurrentItem = itemType;
+        CurrentItemValue = itemValue;
+    }
 }

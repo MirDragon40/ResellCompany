@@ -23,6 +23,14 @@ public class Terminal : MonoBehaviour
 
     public Player Player;
 
+    [Header("아이템 오브젝트")]
+    public GameObject Axe_Item;
+    public GameObject Flashlight_Item;
+
+    [Header("아이템 스폰 위치")]
+    public Transform ItemSpawnPoint;
+
+
     private void Awake()
     {
         Instance = this;
@@ -46,16 +54,27 @@ public class Terminal : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        UseKeyboard();
+        //UseKeyboard();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            Interaction_UI.SetActive(true);
-            Interaction_Text.text = "터미널사용: [E]";
+        Vector3 playerToTerminal = transform.position - other.transform.position; // 터미널을 향한 벡터
+        playerToTerminal.y = 0; // 높이 차이는 무시
+        float angle = Vector3.Angle(other.transform.forward, playerToTerminal); // 각도 계산
 
+
+        if (other.CompareTag("Player") )
+        {
+            if(angle < 30.0f)
+            {
+                Interaction_UI.SetActive(true);
+                Interaction_Text.text = "터미널사용: [E]";
+            }
+            else
+            {
+                Interaction_UI.SetActive(true);
+            }
 
         }
 
@@ -65,24 +84,29 @@ public class Terminal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            Vector3 playerToTerminal = transform.position - other.transform.position; // 터미널을 향한 벡터
+            playerToTerminal.y = 0; // 높이 차이는 무시
+            float angle = Vector3.Angle(other.transform.forward, playerToTerminal); // 각도 계산
+
+            if (Input.GetKeyDown(KeyCode.E) && angle < 40.0f)
             {
                 Interaction_UI.SetActive(false);
 
                 Terminal_text1.enabled = true;
-                IsUsingTerminal = true;
 
-                if (Input.GetKeyDown(KeyCode.KeypadEnter) && typingDisplay.currentText == "Store" )
-                {
-                    Terminal_text1.enabled = false;
-                    Terminal_text2.enabled= true;
-
-                }
+                StartCoroutine(IsUsingTerminal_Coroutine());
                 
+
             }
+            if (Input.GetKeyDown(KeyCode.Escape) && IsUsingTerminal)
+            {
+                Terminal_text1.enabled = false;
+                Terminal_text2.enabled = false;
+                Notify_text.enabled = false;
 
+                IsUsingTerminal = false;
+            }
         }
-
     }
 
     private void OnTriggerExit(Collider other)
@@ -108,34 +132,6 @@ public class Terminal : MonoBehaviour
 
         }
 
-        if (IsUsingTerminal)
-        {
-            if (Terminal_text1.enabled)
-            {
-                if (Input.GetKeyDown(KeyCode.KeypadEnter) && typingDisplay.currentText == "Store")
-                {
-
-
-                }
-            }
-           
-
-            if (Terminal_text2.enabled)
-            {
-                if (Input.GetKeyDown(KeyCode.KeypadEnter) && typingDisplay.currentText == "Axe")
-                {
-                    
-                }
-                else if(Input.GetKeyDown(KeyCode.KeypadEnter) && typingDisplay.currentText == "Flashlight")
-                {
-
-                }
-
-            }
-            
-        }
-
-
     }
 
     private IEnumerator IsUsingTerminal_Coroutine()
@@ -152,12 +148,15 @@ public class Terminal : MonoBehaviour
 
     public void HandleAxeCommand()
     {
-        
+        Player.Stat.MoneyCount -= 30;
+        Instantiate(Axe_Item, ItemSpawnPoint.position, ItemSpawnPoint.rotation);
+
     }
 
     public void HandleFlashlightCommand()
     {
-
+        Player.Stat.MoneyCount -= 25;
+        Instantiate(Flashlight_Item, ItemSpawnPoint.position, ItemSpawnPoint.rotation);
     }
 
     public IEnumerator Notification_Coroutine_text1()
@@ -185,7 +184,6 @@ public class Terminal : MonoBehaviour
 
         Notify_text.enabled = false;
         Terminal_text2.enabled = true;
-
     }
 
 
@@ -196,11 +194,30 @@ public class Terminal : MonoBehaviour
         Terminal_text2.enabled = false;
         Notify_text.text = "아이템 구입 완료!";
 
+        Money_text.text = $"소지금:${Player.Stat.MoneyCount}";
+
+
         yield return new WaitForSeconds(1f);
 
         Notify_text.enabled = false;
-        Terminal_text2.enabled = true;
+        IsUsingTerminal = false;
 
     }
+
+    public IEnumerator CantBuy_Coroutine()
+    {
+        Notify_text.enabled = true;
+        Terminal_text1.enabled = false;
+        Terminal_text2.enabled = false;
+        Notify_text.text = "구매 실패:잔액 부족";
+
+        yield return new WaitForSeconds(1f);
+
+        Notify_text.enabled = false;
+        IsUsingTerminal = false;
+
+    }
+
+
 
 }

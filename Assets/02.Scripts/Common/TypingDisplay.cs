@@ -39,20 +39,37 @@ public class TypingDisplay : MonoBehaviour
                         
                     }
                     // "Axe" 명령어 처리
-                    else if (currentText == "Axe"|| currentText == "Axe")
+                    else if (currentText == "Axe"|| currentText == "axe")
                     {
-                        Debug.Log("Axe 입력 감지!");
-                        // Axe 관련 이벤트 처리 로직
-                        Terminal.Instance.HandleAxeCommand();
-                        StartCoroutine(Terminal.Instance.BoughtItem_Coroutine());
+                        if (Terminal.Instance.Player.Stat.MoneyCount < 30)
+                        {
+                            StartCoroutine(Terminal.Instance.CantBuy_Coroutine());
+                        }
+                        else
+                        {
+                            Debug.Log("Axe 입력 감지!");
+                            // Axe 관련 이벤트 처리 로직
+                            Terminal.Instance.HandleAxeCommand();
+                            StartCoroutine(Terminal.Instance.BoughtItem_Coroutine());
+
+                        }
                     }
                     // "Flashlight" 명령어 처리
-                    else if (currentText == "Flashlight")
+                    else if (currentText == "Flashlight" || currentText == "flashlight")
                     {
-                        Debug.Log("Flashlight 입력 감지!");
-                        // Flashlight 관련 이벤트 처리 로직
-                        Terminal.Instance.HandleFlashlightCommand();
-                        StartCoroutine(Terminal.Instance.BoughtItem_Coroutine());
+                        if (Terminal.Instance.Player.Stat.MoneyCount < 25)
+                        {
+                            StartCoroutine(Terminal.Instance.CantBuy_Coroutine());
+                        }
+                        else
+                        {
+                            Debug.Log("Flashlight 입력 감지!");
+                            // Flashlight 관련 이벤트 처리 로직
+                            Terminal.Instance.HandleFlashlightCommand();
+                            StartCoroutine(Terminal.Instance.BoughtItem_Coroutine());
+
+                            //Terminal.Instance.Player.Stat.MoneyCount -= 25;
+                        }
                     }
                     else
                     {

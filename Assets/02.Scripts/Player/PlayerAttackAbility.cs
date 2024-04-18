@@ -35,13 +35,16 @@ public class PlayerAttackAbility : PlayerAbility
 
     public void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"{other.name}");
         if (other.CompareTag("Monster"))
         {
+            Debug.Log("거미가 맞았다");
+
             SpiderMove spiderMove = other.GetComponent<SpiderMove>();
             IDamaged hitMonster = other.GetComponent<IDamaged>();
             if(hitMonster != null)
             {
-                spiderMove.Damaged(spiderMove.Stat.Damage);
+                hitMonster.Damaged(spiderMove.Stat.Damage);
             }
         }
     }
