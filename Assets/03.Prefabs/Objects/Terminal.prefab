@@ -659,9 +659,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Interaction_UI: {fileID: 0}
   Interaction_Text: {fileID: 0}
+  IsUsingTerminal: 0
   Terminal_text1: {fileID: 6114041528233010659}
   Terminal_text2: {fileID: 6394281242571641321}
   Money_text: {fileID: 8166157415038632792}
+  Notify_text: {fileID: 4756337804562879410}
+  Player: {fileID: 5927482013594747144, guid: 6de50ed845c84c948be8b6556b27ecba, type: 3}
 --- !u!135 &5919335289653117110
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1232,7 +1235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.05724919, g: 1, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1265,7 +1268,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typingText: {fileID: 5471094033880773220}
-  _canType: 1
   currentText: 
 --- !u!1 &7054111741456200716
 GameObject:

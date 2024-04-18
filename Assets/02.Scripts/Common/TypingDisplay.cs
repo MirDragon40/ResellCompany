@@ -35,6 +35,8 @@ public class TypingDisplay : MonoBehaviour
                         Debug.Log("Store 입력 감지!");
                         // Store 관련 이벤트 처리 로직
                         Terminal.Instance.HandleStoreCommand();
+
+                        
                     }
                     // "Axe" 명령어 처리
                     else if (currentText == "Axe"|| currentText == "Axe")
@@ -42,6 +44,7 @@ public class TypingDisplay : MonoBehaviour
                         Debug.Log("Axe 입력 감지!");
                         // Axe 관련 이벤트 처리 로직
                         Terminal.Instance.HandleAxeCommand();
+                        StartCoroutine(Terminal.Instance.BoughtItem_Coroutine());
                     }
                     // "Flashlight" 명령어 처리
                     else if (currentText == "Flashlight")
@@ -49,10 +52,19 @@ public class TypingDisplay : MonoBehaviour
                         Debug.Log("Flashlight 입력 감지!");
                         // Flashlight 관련 이벤트 처리 로직
                         Terminal.Instance.HandleFlashlightCommand();
+                        StartCoroutine(Terminal.Instance.BoughtItem_Coroutine());
                     }
                     else
                     {
-                        StartCoroutine(Terminal.Instance.Notification_Coroutine());
+                        if (Terminal.Instance.Terminal_text1.enabled && !Terminal.Instance.Terminal_text2.enabled)
+                        {
+                            StartCoroutine(Terminal.Instance.Notification_Coroutine_text1());
+                        }
+                        if(Terminal.Instance.Terminal_text2.enabled && !Terminal.Instance.Terminal_text1.enabled)
+                        {
+                            StartCoroutine(Terminal.Instance.Notification_Coroutine_text2());
+                        }
+
                     }
 
                     currentText = ""; // 텍스트 초기화

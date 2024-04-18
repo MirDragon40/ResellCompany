@@ -114,6 +114,8 @@ public class Terminal : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.KeypadEnter) && typingDisplay.currentText == "Store")
                 {
+
+
                 }
             }
            
@@ -150,7 +152,7 @@ public class Terminal : MonoBehaviour
 
     public void HandleAxeCommand()
     {
-
+        
     }
 
     public void HandleFlashlightCommand()
@@ -158,7 +160,7 @@ public class Terminal : MonoBehaviour
 
     }
 
-    public IEnumerator Notification_Coroutine()
+    public IEnumerator Notification_Coroutine_text1()
     {
         Notify_text.enabled = true;
         Terminal_text1.enabled = false;
@@ -169,16 +171,35 @@ public class Terminal : MonoBehaviour
 
         Notify_text.enabled = false;
         Terminal_text1.enabled = true;
+
+    }
+
+    public IEnumerator Notification_Coroutine_text2()
+    {
+        Notify_text.enabled = true;
+        Terminal_text1.enabled = false;
+        Terminal_text2.enabled = false;
+        Notify_text.text = "※ 일치하는 명령어가 없습니다. \n명령어를 다시 입력해주세요.";
+
+        yield return new WaitForSeconds(1f);
+
+        Notify_text.enabled = false;
         Terminal_text2.enabled = true;
 
     }
 
+
     public IEnumerator BoughtItem_Coroutine()
     {
         Notify_text.enabled = true;
+        Terminal_text1.enabled = false;
+        Terminal_text2.enabled = false;
         Notify_text.text = "아이템 구입 완료!";
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
+
+        Notify_text.enabled = false;
+        Terminal_text2.enabled = true;
 
     }
 

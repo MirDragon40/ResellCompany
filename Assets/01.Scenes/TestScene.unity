@@ -939,10 +939,6 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5606683584046402896, guid: 5fa0a73a389b1164daecd7b8c806316a, type: 3}
-      propertyPath: _canType
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8289252299975910063, guid: 5fa0a73a389b1164daecd7b8c806316a, type: 3}
       propertyPath: Player
       value: 
