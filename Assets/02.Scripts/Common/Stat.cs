@@ -32,11 +32,15 @@ public class Stat
 
     public int MoneyCount;
     public int CollectedMoneyCount;
+    public int NeedToCollectMoneyCount;
+
 
     public void Init()
     {
         Health = MaxHealth;
         Stamina = MaxStamina;
+
+        NeedToCollectMoneyCount = UnityEngine.Random.Range(300,700);
 
     }
 }

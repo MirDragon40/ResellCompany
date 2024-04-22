@@ -61,6 +61,15 @@ public class Terminal : MonoBehaviour
         //UseKeyboard();
 
         InitMoneyCount();
+
+        if (Terminal_text1.enabled)
+        {
+            Terminal_text2.enabled = false;
+        }
+        else if (Terminal_text2.enabled)
+        {
+            Terminal_text1.enabled = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -199,6 +208,7 @@ public class Terminal : MonoBehaviour
     {
 
         Terminal_text1.enabled = false;
+        Notify_text.enabled= true;
         Notify_text.text = $"아이템을 팔고 \n${Player.Stat.CollectedMoneyCount}를 받았습니다.";
         Player.Stat.MoneyCount += Player.Stat.CollectedMoneyCount;
         Money_text.text = $"소지금:${Player.Stat.MoneyCount}";
@@ -223,7 +233,6 @@ public class Terminal : MonoBehaviour
 
         Notify_text.enabled = false;
         IsUsingTerminal = false;
-
     }
 
     public IEnumerator CantBuy_Coroutine()

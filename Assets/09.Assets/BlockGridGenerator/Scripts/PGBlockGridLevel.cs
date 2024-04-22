@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using UnityEditor;
 using System.Reflection;
 
 
@@ -504,7 +506,7 @@ public class PGBlockGridLevel : MonoBehaviour
 
         //Debug.Log("Coroutine Finished.");
 
-        ClearLog();
+       // ClearLog();
         stopWatch = false;
 
     }
@@ -7984,13 +7986,15 @@ public class PGBlockGridLevel : MonoBehaviour
 
 
         //Clear the log
-        ClearLog();
+      //  ClearLog();
 
 
         //Stop Coroutine
         StopCoroutine(LevelBuilder());
 
     }
+
+#if UNITY_EDITOR
     //Code to clear the console log (get activated when ClearAll function is called.
     public void ClearLog()
     {
@@ -7999,7 +8003,7 @@ public class PGBlockGridLevel : MonoBehaviour
         var method = type.GetMethod("Clear");
         method.Invoke(new object(), null);
     }
-
+#endif
     //
 
     //Functions For Already Built Rooms

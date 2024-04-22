@@ -48,6 +48,7 @@ public class ItemObject : MonoBehaviour
             itemName = "금화";
 
         }
+        
 
 
     }
@@ -97,9 +98,17 @@ public class ItemObject : MonoBehaviour
             {
                 Interaction_UI.SetActive(false);
 
-                Player player = GetComponent<Player>();
+                Player player = col.GetComponent<Player>();
                 player.Stat.CollectedMoneyCount += itemValue; 
-                
+
+                if(ItemType == ItemType.Axe)
+                {
+                    ItemManager.Instance.HaveAxe = true;
+                }
+                else if (ItemType == ItemType.Flashlight)
+                {
+                    ItemManager.Instance.HaveFlashlight = true;
+                }
 
                 Destroy(this.gameObject);
             }

@@ -13,7 +13,11 @@ public class Player : MonoBehaviour, IDamaged
     public GameObject UI_AlmostDying;
     public GameObject UI_Damaged;
 
+    public GameObject UI_GameOverPopup;
 
+    public GameObject UI_CanvasHUD;
+
+    public LobbyScene LobbyScene;
 
     private void Awake()
     {
@@ -27,15 +31,21 @@ public class Player : MonoBehaviour, IDamaged
     public void Damaged(int damage)
     {
         Stat.Health -= damage;
-        StartCoroutine(Damaged_Coroutine());
+
         if (Stat.Health <= 0 && Stat.Health > -5)
         {
             Death();
+            StartCoroutine(Death_Coroutine());
+        }
+        else if (Stat.Health > 0)
+        {
+            StartCoroutine(Damaged_Coroutine());
         }
         else if (Stat.Health == 20)
         {
             StartCoroutine(DyingMessage_Coroutine());
         }
+        
     }
 
     private void Death()
@@ -46,6 +56,8 @@ public class Player : MonoBehaviour, IDamaged
         Stat.MoveSpeed = 0;
         Stat.RunSpeed = 0;
         Stat.RotationSpeed = 0;
+
+        UI_CanvasHUD.SetActive(false);
 
     }
 
@@ -80,5 +92,12 @@ public class Player : MonoBehaviour, IDamaged
         yield return new WaitForSeconds(0.2f);
         UI_Damaged.SetActive(false);
     }
+    private IEnumerator Death_Coroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        UI_GameOverPopup.SetActive(true);
 
+        yield return new WaitForSeconds(4f);
+        LobbyScene.RestartGame();
+    }
 }

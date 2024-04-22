@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class ItemManager : MonoBehaviour
 {
@@ -14,6 +12,9 @@ public class ItemManager : MonoBehaviour
 
     public bool HaveAxe = false;
     public bool HaveFlashlight = false;
+
+    public bool UsingAxe = false;
+    public bool UsingFlashlight = false;
 
     public GameObject AxeImage;
     public GameObject FlashlightImage;
@@ -43,6 +44,27 @@ public class ItemManager : MonoBehaviour
     {
         HaveAxe = false;
         HaveFlashlight = false;
+    }
+
+    private void Update()
+    {
+        if (HaveAxe)
+        {
+            AxeImage.SetActive(true);
+        }
+        else if (HaveFlashlight)
+        {
+            FlashlightImage.SetActive(true);
+        }
+        if (!HaveAxe)
+        {
+            AxeImage.SetActive(false);
+        }
+        else if (!HaveFlashlight)
+        {
+            FlashlightImage.SetActive(false);
+
+        }
     }
 
     // 아이템을 인벤토리에 추가

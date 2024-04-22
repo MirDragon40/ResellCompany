@@ -11,6 +11,7 @@ public class UI_Inventory : MonoBehaviour
     public List<ItemObject> itemObjectsInInventoryUI; // 아이템 리스트
     public UI_InventorySlot[] Slots; // 인벤토리 슬롯의 이미지 배열
 
+    private bool _isLightOn = false;
 
     public int selectedIndex = 0;  // 현재 선택된 슬롯의 인덱스
 
@@ -23,7 +24,11 @@ public class UI_Inventory : MonoBehaviour
     }
     private void Start()
     {
-        
+        ItemManager.Instance.FlashlightItemObject_camera.SetActive(false);
+        ItemManager.Instance.AxeItemObject_camera.SetActive(false);
+
+        ItemManager.Instance.Flashlight_Hand.SetActive(false);
+
         InitInventory();
         playerAttackAbility.enabled = false;
 
@@ -94,6 +99,46 @@ public class UI_Inventory : MonoBehaviour
             }
 
             Slots[selectedIndex].SetScale(1.2f); // 새로 선택된 슬롯의 스케일을 키움
+        
+            if(selectedIndex == 0 && ItemManager.Instance.HaveFlashlight)
+            {
+                ItemManager.Instance.FlashlightItemObject_camera.SetActive(true);
+                ItemManager.Instance.AxeItemObject_camera.SetActive(false);
+
+
+                if (Input.GetMouseButtonDown(0) && !_isLightOn)
+                {
+                    _isLightOn = true;
+                    ItemManager.Instance.Flashlight_Hand.SetActive(true);
+                }
+                else if (Input.GetMouseButtonDown(0) && _isLightOn)
+                {
+                    _isLightOn = false;
+                    ItemManager.Instance.Flashlight_Hand.SetActive(false);
+                }
+
+            }
+            else if (selectedIndex != 0 && ItemManager.Instance.HaveFlashlight)
+            {
+                ItemManager.Instance.FlashlightItemObject_camera.SetActive(false);
+
+            }
+            else if(selectedIndex == 1 && ItemManager.Instance.HaveAxe)
+            {
+                ItemManager.Instance.FlashlightItemObject_camera.SetActive(false);
+                ItemManager.Instance.AxeItemObject_camera.SetActive(true);
+
+
+                ItemManager.Instance.AxeItemObject_Hand.SetActive(true);
+                playerAttackAbility.enabled = true;
+
+            }
+            else if(selectedIndex != 1 && ItemManager.Instance.HaveAxe)
+            {
+                ItemManager.Instance.AxeItemObject_camera.SetActive(false);
+
+            }
+
         }
     }
 

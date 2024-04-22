@@ -12,6 +12,8 @@ public class HouseDoorController : MonoBehaviour
     public TextMeshProUGUI Interaction_Text;
 
     private bool _isOpened = false;
+
+    
   
 
     private void Awake()
